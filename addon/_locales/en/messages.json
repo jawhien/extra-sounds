@@ -1,0 +1,126 @@
+{
+"extensionName":{
+ "message":"Extra sounds",
+	"description":"name of the extension"
+},
+"extensionDescription":{
+ "message":"Extra sounds for your Firefox (Navigation, downloads and other)",
+ "description":"Description of the extension"
+},
+"optionsPageTitle":{
+ "message":"Extra sounds preferences",
+ "description":"the title of preferences page"
+},
+"aboutHomeLink":{
+ "message":"Home page",
+ "description":"the text of home link"
+},
+"aboutSupportLink":{
+ "message":"Support",
+ "description":"The text of support link"
+},
+"tabsGeneralSettings":{
+ "message":"General settings",
+ "description":"Text of general settings tab"
+},
+"tabsCustomSounds":{
+ "message":"Custom sounds",
+ "description":"Text of custom sounds tab"
+},
+"containerGeneralSettingsHeader":{
+ "message":"General settings",
+ "description":"Text of header general settings container"
+},
+"containerGeneralSettingsDescription":{
+ "message":"Select the events which will play the sounds",
+ "description":"Description of general settings container"
+},
+"containerGeneralSettingsNavigationHeader":{
+ "message":"Navigation",
+ "description":"Text header navigation"
+},
+"containerGeneralSettingsDownloadHeader":{
+ "message":"Download manager",
+ "description":"Text for download manager events header"
+},
+"containerGeneralSettingsStartNavigation":{
+ "message":"Start navigation",
+ "description":"Text of checkbox Start navigation"
+},
+"containerGeneralSettingsCompleteNavigation":{
+ "message":"Complete navigation",
+ "description":"Text of checkbox Complete navigation"
+},
+ "containerGeneralSettingsDownloadCompleted":{
+ "message":"Download is complete",
+ "description":"Text of checkbox Download completed"
+},
+"containerGeneralSettingsDownloadError":{
+ "message":"Downloading error",
+ "description":"Text of checkbox Download error"
+},
+"containerGeneralSettingsDownloadNew":{
+ "message":"New download",
+ "description":"Text of checkbox Download new"
+},
+"containerCustomSoundsHeader":{
+ "message":"Custom sounds",
+ "description":"Text of header custom sounds"
+},
+"containerCustomSoundsPreviewButton":{
+ "message":"Play",
+ "description":"Text of preview button"
+},
+"containerCustomSoundsResetButton":{
+ "message":"Reset all sounds",
+ "description":"Text for Reset all sounds button"
+},
+"containerCustomSoundsStartNavigationText":{
+ "message":"Sound for start navigation",
+ "description":"Text for Start navigation sound"
+},
+"containerCustomSoundsCompleteNavigationText":{
+ "message":"Sound for complete navigation",
+ "description":"Text for complete navigation sound"
+},
+"containerCustomSoundsDownloadCompletedText":{
+ "message":"Sound for download is complete",
+ "description":"Text for Completed download sound"
+},
+"containerCustomSoundsDownloadErrorText":{
+ "message":"Sound for downloading error",
+ "description":"Text for Download error sound"
+},
+"containerCustomSoundsDownloadnewText":{
+ "message":"Sound for new download",
+  "description":"Text for Download new sound"
+},
+"optionsSaveButton":{
+ "message":"Save preferences",
+ "description":"Text for save preferences"
+},
+"optionsNotificationSaveSuccess":{
+ "message":"Preferences saved",
+ "description":"Notification for success save preferences"
+},
+"optionsNotificationSaveError":{
+ "message":"Error saving settings",
+ "description":"Notification for faild save preferences"
+},
+"optionsNotificationSelectSound":{
+ "message":"Select the sound file",
+ "description":"Notification for select sound"
+},
+"optionsNotificationFileBig":{
+ "message":"The file is too large. Select a file size not more than 500 KB.",
+ "description":"Notification for The file is too large."
+},
+"optionsNotificationFileNotSupported":{
+ "message":"This file type is not supported. Select the file format *.ogg, *.wav or *.mp3.",
+ "description":"Notification for This file type is not supported."
+},
+"optionsNotificationResetSounds":{
+ "message":"Sounds have been reset. Click (save preferences) button for take effect.",
+ "description":"Notification for reset all sounds"
+}
+}

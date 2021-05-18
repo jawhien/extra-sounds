@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title id="page-title"></title>
+<link rel="stylesheet" href="options.css">
+</head>
+<body>
+<div id="global-container">
+<div class="about" id="about">
+<a id="about-home-link" href="http://jawhien.tiflohelp.ru/en/articles/other/extrasounds.php" target="_blank"></a> | <a id="about-support-link" href="mailto:support@tiflohelp.ru"></a>
+<hr>
+</div>
+<div class="tabs-container" id="tabs-container">
+<button class="tab" id="general-settings" role="tab" aria-selected="false"></button>
+<button class="tab" id="custom-sounds" role="tab" aria-selected="false"></button>
+</div>
+<div class="tab-container" id="general-settings-container">
+<h3 id="general-settings-header"></h3>
+<p class="element" id="general-settings-description"></p>
+<div class="checkboxes element">
+<h4 id="general-settings-navigation-header"></h4>
+<p><label><input type="checkbox" id="start-navigation" value=1><span id="general-settings-start-navigation"></span></label></p>
+<p><label><input type="checkbox" id="complete-navigation" value=1><span id="general-settings-complete-navigation"></span></label></p>
+<h4 id="general-settings-download-header"></h4>
+<p><label><input type="checkbox" id="download-new" value=1><span id="general-settings-download-new"></span></label></p>
+<p><label><input type="checkbox" id="download-completed" value=1><span id="general-settings-download-completed"></span></label></p>
+<p><label><input type="checkbox" id="download-error" value=1><span id="general-settings-download-error"></span></label></p>
+</div>
+</div><!-- /general-settings-container -->
+
+<div class="tab-container" id="custom-sounds-container">
+<h3 id="custom-sounds-header"></h3>
+<div class="element" id="start-navigation-container">
+<p id="custom-sounds-start-navigation-text"></p>
+<input id="start-navigation-select" type="file" accept=".ogg, .mp3, .wav">
+<button id="start-navigation-play"></button>
+</div><!-- /start navigation -->
+<div class="element" id="complete-navigation-container">
+<p id="custom-sounds-complete-navigation-text"></p>
+<input id="complete-navigation-select" type="file" accept=".ogg, .mp3, .wav">
+<button id="complete-navigation-play"></button>
+</div><!-- /complete-navigation-container -->
+<div class="element" id="download-completed-container">
+<p id="custom-sounds-download-completed-text"></p>
+<input id="download-completed-select" type="file" accept=".ogg, .mp3, .wav">
+<button id="download-completed-play"></button>
+</div><!-- /download-completed-container -->
+<div class="element" id="download-error-container">
+<p id="custom-sounds-download-error-text"></p>
+<input id="download-error-select" type="file" accept=".ogg, .mp3, .wav">
+<button id="download-error-play"></button>
+</div><!-- /start navigation -->
+<div class="element" id="download-new-container">
+<p id="custom-sounds-download-new-text"></p>
+<input id="download-new-select" type="file" accept=".ogg, .mp3, .wav">
+<button id="download-new-play"></button>
+</div><!-- /start navigation -->
+
+<button id="restore-sounds"></button>
+</div><!-- /custom-sounds-container -->
+<div><button id="save"></button></div>
+<div id="result" role="alert" aria-live="assertive" style="color:red;"></div>
+</div><!-- /global container -->
+<script src="options.js"></script>
+<script src="interface.js"></script>
+<script src="i18n.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+{
+"extensionName":{
+ "message":"Extra sounds",
+	"description":"name of the extension"
+},
+"extensionDescription":{
+ "message":"Дополнительные звуки для вашего Firefox (Навигация, загрузки и другие)",
+ "description":"Description of the extension"
+},
+"optionsPageTitle":{
+ "message":"Настройки Extra sounds",
+ "description":"the title of preferences page"
+},
+"aboutHomeLink":{
+ "message":"Домашняя страница",
+ "description":"the text of home link"
+},
+"aboutSupportLink":{
+ "message":"Поддержка",
+ "description":"The text of support link"
+},
+"tabsGeneralSettings":{
+ "message":"Основные настройки",
+ "description":"Text of general settings tab"
+},
+"tabsCustomSounds":{
+ "message":"Пользовательские звуки",
+ "description":"Text of custom sounds tab"
+},
+"containerGeneralSettingsHeader":{
+ "message":"Основные настройки",
+ "description":"Text of header general settings container"
+},
+"containerGeneralSettingsDescription":{
+ "message":"Выберите события, для которых будут воспроизводиться звуки",
+ "description":"Description of general settings container"
+},
+"containerGeneralSettingsNavigationHeader":{
+ "message":"Навигация",
+ "description":"Text header navigation"
+},
+"containerGeneralSettingsDownloadHeader":{
+ "message":"Менеджер загрузок",
+ "description":"Text for download manager events header"
+},
+"containerGeneralSettingsStartNavigation":{
+ "message":"Навигация началась",
+ "description":"Text of checkbox Start navigation"
+},
+"containerGeneralSettingsCompleteNavigation":{
+ "message":"Навигация окончена",
+ "description":"Text of checkbox Complete navigation"
+},
+ "containerGeneralSettingsDownloadCompleted":{
+ "message":"Загрузка завершена",
+ "description":"Text of checkbox Download completed"
+},
+"containerGeneralSettingsDownloadError":{
+ "message":"Ошибка загрузки",
+ "description":"Text of checkbox Download error"
+},
+"containerGeneralSettingsDownloadNew":{
+ "message":"Новая загрузка",
+ "description":"Text of checkbox Download new"
+},
+"containerCustomSoundsHeader":{
+ "message":"Пользовательские звуки",
+ "description":"Text of header custom sounds"
+},
+"containerCustomSoundsPreviewButton":{
+ "message":"Прослушать",
+ "description":"Text of preview button"
+},
+"containerCustomSoundsResetButton":{
+ "message":"Сбросить все звуки",
+ "description":"Text for Reset all sounds button"
+},
+"containerCustomSoundsStartNavigationText":{
+ "message":"Звук начала навигации",
+ "description":"Text for Start navigation sound"
+},
+"containerCustomSoundsCompleteNavigationText":{
+ "message":"Звук окончания навигации",
+ "description":"Text for complete navigation sound"
+},
+"containerCustomSoundsDownloadCompletedText":{
+ "message":"Звук окончания загрузки",
+ "description":"Text for Completed download sound"
+},
+"containerCustomSoundsDownloadErrorText":{
+ "message":"Звук ошибки загрузки",
+ "description":"Text for Download error sound"
+},
+"containerCustomSoundsDownloadnewText":{
+ "message":"Звук новой загрузки",
+  "description":"Text for Download new sound"
+},
+"optionsSaveButton":{
+ "message":"Сохранить настройки",
+ "description":"Text for save preferences"
+},
+"optionsNotificationSaveSuccess":{
+ "message":"Настройки сохранены",
+ "description":"Notification for success save preferences"
+},
+"optionsNotificationSaveError":{
+ "message":"Ошибка сохранения настроек",
+ "description":"Notification for faild save preferences"
+},
+"optionsNotificationSelectSound":{
+ "message":"Выберите звуковой файл",
+ "description":"Notification for select sound"
+},
+"optionsNotificationFileBig":{
+ "message":"Файл слишком большой. Выберите файл размером не более 500 КБ.",
+ "description":"Notification for The file is too large."
+},
+"optionsNotificationFileNotSupported":{
+ "message":"Файл этого типа не поддерживается. Выберите файл формата *.ogg, *.wav или *.mp3.",
+ "description":"Notification for This file type is not supported."
+},
+"optionsNotificationResetSounds":{
+ "message":"Звуки сброшены. Нажмите кнопку (Сохранить настройки), чтобы изменения вступили в силу.",
+ "description":"Notification for reset all sounds"
+}
+}
