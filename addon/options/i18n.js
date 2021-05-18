@@ -7,6 +7,8 @@ element.textContent = message;
 
 setElementText('optionsPageTitle', 'page-title');
 setElementText('aboutHomeLink', 'about-home-link');
+setElementText('aboutRepositoryLink', 'about-repository-link');
+setElementText('aboutDonateLink', 'about-donate-link');
 setElementText('aboutSupportLink', 'about-support-link');
 setElementText('tabsGeneralSettings', 'general-settings');
 setElementText('tabsCustomSounds', 'custom-sounds');

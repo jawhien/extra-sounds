@@ -15,6 +15,14 @@
  "message":"Home page",
  "description":"the text of home link"
 },
+"aboutRepositoryLink":{
+ "message":"GitHub repository",
+ "description":"the text of repository link"
+},
+"aboutDonateLink":{
+ "message":"Donate the add-on author",
+ "description":"the text of donate link"
+},
 "aboutSupportLink":{
  "message":"Support",
  "description":"The text of support link"
