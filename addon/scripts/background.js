@@ -149,6 +149,3 @@ browser.webNavigation.onCompleted.addListener(completeLoadPage);
 browser.downloads.onChanged.addListener(downloadComplit);
 browser.storage.onChanged.addListener(changePreferences);
 browser.downloads.onCreated.addListener(createDownload);
-
-console.info('test');
-console.log("test2");
