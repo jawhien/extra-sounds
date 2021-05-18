@@ -66,12 +66,14 @@ const loadSounds = function(sounds) {
 };
 
 const loadPage = function(details) {
+	if(details.frameId > 0) return;
 	if(preferences.startNavigation) {
 		playSound('startNavigation');
 	}
 };
 
 const completeLoadPage = function(details) {
+	if(details.frameId > 0) return;
 	if(preferences.completeNavigation) {
 		playSound('completeNavigation');
 	}
@@ -147,3 +149,6 @@ browser.webNavigation.onCompleted.addListener(completeLoadPage);
 browser.downloads.onChanged.addListener(downloadComplit);
 browser.storage.onChanged.addListener(changePreferences);
 browser.downloads.onCreated.addListener(createDownload);
+
+console.info('test');
+console.log("test2");
