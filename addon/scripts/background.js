@@ -120,15 +120,20 @@ const loadStorageError = function(error) {
 };
 
 const changePreferences = function(changes, area) {
-	let prefs = changes.preferences.newValue;
-	let cs = changes.customSounds.newValue;
-	let changedItems = Object.keys(prefs);
-	for (let item of changedItems) {
-		if(preferences[item] != prefs[item]) {
-			preferences[item] = prefs[item];
+	if("preferences" in changes) {
+		let prefs = changes.preferences.newValue;
+		let changedItems = Object.keys(prefs);
+		for (let item of changedItems) {
+			if(preferences[item] != prefs[item]) {
+				preferences[item] = prefs[item];
+			}
 		}
 	}
-	loadSounds(cs);
+
+	if("customSounds" in changes) {
+		let cs = changes.customSounds.newValue;
+		loadSounds(cs);
+	}
 };
 
 const createDownload = function(item) {
