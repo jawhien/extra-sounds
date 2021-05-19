@@ -59,7 +59,13 @@ const base64ToBuffer = function(base64) {
 };
 
 const loadToBuffer = function(arrayBuffer, key) {
-	let buffer = base64ToBuffer(bufferToBase64(arrayBuffer));
+	let buffer;
+	if (typeof arrayBuffer === "string" || arrayBuffer instanceof String) {
+		buffer = base64ToBuffer(arrayBuffer);
+	} else {
+		buffer = base64ToBuffer(bufferToBase64(arrayBuffer));
+	}
+
 	ctx.decodeAudioData(buffer).then(function(decodedData) {
 		buffers[key] = decodedData;
 	});
@@ -75,8 +81,8 @@ const playSound = function(key) {
 const loadFile = function(curFile, key) {
 	let reader = new FileReader();
 	reader.addEventListener('load', function(e) {
-		arrayBuffers[key] = e.target.result;
-		loadToBuffer(e.target.result, key);
+		arrayBuffers[key] = bufferToBase64(e.target.result);
+		loadToBuffer(arrayBuffers[key], key);
 	});
 
 	if(curFile.size > 512000) {

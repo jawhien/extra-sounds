@@ -14,8 +14,25 @@ let gettingStorage = browser.storage.local.get();
 
 // functions section
 
+const base64ToBuffer = function(base64) {
+	let binary = window.atob(base64);
+	let buffer = new ArrayBuffer(binary.length);
+	let bytes = new Uint8Array(buffer);
+	for(let i = 0; i < buffer.byteLength; i++) {
+		bytes[i] = binary.charCodeAt(i) & 0xFF;
+	}
+	return buffer;
+};
+
 const loadToBuffer = function(arrayBuffer, key) {
-	ctx.decodeAudioData(arrayBuffer).then(function(decodedData) {
+	let buffer;
+	if (typeof arrayBuffer === "string" || arrayBuffer instanceof String) {
+		buffer = base64ToBuffer(arrayBuffer);
+	} else {
+		buffer = arrayBuffer;
+	}
+
+	ctx.decodeAudioData(buffer).then(function(decodedData) {
 		buffers[key] = decodedData;
 	});
 };
