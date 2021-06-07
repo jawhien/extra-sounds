@@ -1,5 +1,11 @@
 # Extra sounds Change log
 
+## V2.2
+
+* Fixed false positives for navigation sounds.
+* Fixed outdated links, added a link to the GitHub repository.
+* Optimization of the code.
+
 ## V2.1
 
 * Added new sound for events "Added new download". 
