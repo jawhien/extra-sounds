@@ -12,6 +12,9 @@ let preferences = {
 const ctx = new AudioContext();
 let gettingStorage = browser.storage.local.get();
 
+let lastPageURL = "";
+let lastPageComplete = true;
+
 // functions section
 
 const base64ToBuffer = function(base64) {
@@ -84,8 +87,10 @@ const loadSounds = function(sounds) {
 
 const loadPage = function(details) {
 	if(details.frameId > 0) return;
-	if(preferences.startNavigation) {
+	if(preferences.startNavigation && (lastPageURL != details.url || lastPageComplete)) {
 		playSound('startNavigation');
+		lastPageURL = details.url;
+		lastPageComplete = false;
 	}
 };
 
@@ -94,6 +99,7 @@ const completeLoadPage = function(details) {
 	if(preferences.completeNavigation) {
 		playSound('completeNavigation');
 	}
+	lastPageComplete = true;
 };
 
 const downloadComplit = function(downloadDelta) {
