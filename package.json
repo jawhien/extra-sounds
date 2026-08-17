@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "source": "addon",
+  "output": "build",
+  "actions": [
+    ["firefox", ["firefox"]],
+    ["chrome", ["chrome"]],
+    ["firefox-minimal", ["firefox-minimal"]],
+    ["all", ["firefox", "chrome"]]
+  ],
+  "common": [
+    "icons",
+    "_locales",
+    "options",
+    "sounds",
+    "scripts/audio.js"
+  ],
+  "targets": {
+    "firefox": {
+      "output": "firefox",
+      "manifest": "manifest.firefox.json",
+      "bundle": "extra-sounds-firefox.zip",
+      "files": [
+        ["scripts/background-firefox.js", "scripts/background.js"]
+      ]
+    },
+    "chrome": {
+      "output": "chrome",
+      "manifest": "manifest.chrome.json",
+      "bundle": "extra-sounds-chrome.zip",
+      "files": [
+        ["scripts/service-worker-chrome.js", "scripts/background.js"],
+        "scripts/offscreen.html",
+        "scripts/offscreen.js"
+      ]
+    },
+    "firefox-minimal": {
+      "output": "firefox-minimal",
+      "common": false,
+      "manifest": "manifest.firefox.json"
+    }
+  }
+}
