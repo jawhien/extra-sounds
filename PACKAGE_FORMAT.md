@@ -348,7 +348,6 @@ A script should treat the following as errors:
   "actions": [
     ["firefox", ["firefox"]],
     ["chrome", ["chrome"]],
-    ["firefox-minimal", ["firefox-minimal"]],
     ["all", ["firefox", "chrome"]]
   ],
   "common": [
@@ -376,11 +375,6 @@ A script should treat the following as errors:
         "scripts/offscreen.html",
         "scripts/offscreen.js"
       ]
-    },
-    "firefox-minimal": {
-      "output": "firefox-minimal",
-      "common": false,
-      "manifest": "manifest.firefox.json"
     }
   }
 }
