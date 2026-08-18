@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "2.2",
+  "homepage_url": "https://jnsoft.ru/en/articles/other/extrasounds/",
+  "minimum_chrome_version": "109",
+  "icons": {
+    "48": "icons/link-48.png"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "permissions": [
+    "webNavigation",
+    "downloads",
+    "storage",
+    "offscreen"
+  ],
+  "background": {
+    "service_worker": "scripts/background.js",
+    "type": "module"
+  },
+  "default_locale": "en"
+}
