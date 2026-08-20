@@ -25,6 +25,13 @@ const saveSounds = document.querySelector('#save-sounds');
 
 let buffers = new Object();
 let arrayBuffers = new Object;
+const defaultPreferences = {
+	startNavigation:true,
+	completeNavigation:true,
+	downloadCompleted:true,
+	downloadError:true,
+	downloadNew:true
+};
 const ctx = new AudioContext();
 let gettingItem = browser.storage.local.get();
 let unSaveChanges = false;
@@ -110,13 +117,13 @@ const i18nMessage = function(messageId, timeout=10000) {
 };
 
 const getStorage = function(data) {
-	let item = data.preferences;
-	startNavBox.checked = item.startNavigation;
-	completeNavBox.checked = item.completeNavigation;
-	downloadCompletedBox.checked = item.downloadCompleted;
-	deCheckBox.checked = item.downloadError;
-	dnCheckBox.checked = item.downloadNew;
-	if(Object.keys(data.customSounds).length > 0) {
+	let item = data.preferences || {};
+	startNavBox.checked = item.startNavigation ?? defaultPreferences.startNavigation;
+	completeNavBox.checked = item.completeNavigation ?? defaultPreferences.completeNavigation;
+	downloadCompletedBox.checked = item.downloadCompleted ?? defaultPreferences.downloadCompleted;
+	deCheckBox.checked = item.downloadError ?? defaultPreferences.downloadError;
+	dnCheckBox.checked = item.downloadNew ?? defaultPreferences.downloadNew;
+	if(data.customSounds && Object.keys(data.customSounds).length > 0) {
 		arrayBuffers = data.customSounds;
 		for(let key in arrayBuffers) {
 			loadToBuffer(arrayBuffers[key], key);

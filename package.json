@@ -19,7 +19,10 @@
 			"manifest": "manifest.firefox.json",
 			"bundle": "extra-sounds-firefox.zip",
 			"files": [
-				"scripts/background.js"
+				["scripts/background-firefox.js", "scripts/background.js"],
+				"scripts/core.js",
+				"scripts/sound-keys.js",
+				"scripts/audio-firefox.js"
 			]
 		},
 		"chrome": {
@@ -27,7 +30,11 @@
 			"manifest": "manifest.chrome.json",
 			"bundle": "extra-sounds-chrome.zip",
 			"files": [
-				"scripts/background.js"
+				["scripts/background-chrome.js", "scripts/background.js"],
+				"scripts/core.js",
+				"scripts/sound-keys.js",
+				"scripts/audio-offscreen-client.js",
+				"offscreen"
 			]
 		}
 	}
