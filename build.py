@@ -1,6 +1,7 @@
 import json
 import shutil
 import sys
+import time
 import zipfile
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
@@ -39,7 +40,7 @@ class BuildPlan:
 	targets: tuple[Target, ...]
 
 @dataclass(frozen=True)
-class Artifact:
+class BuildOutput:
 	target: str
 	output: Path
 	bundle: Path | None
@@ -226,16 +227,21 @@ class PackageBuilder:
 		self.root = root
 		self.schema = schema
 
-	def build(self, action: str) -> None:
+	def build(self, action: str, show_details: bool = False) -> None:
 		plan = self.schema.plan(action)
+		started_at = time.perf_counter()
+		print(f"action {action}: started")
 		try:
 			self._check_plan(plan)
 			plan.output.mkdir(parents=True, exist_ok=True)
-			artifacts: list[Artifact] = []
+			outputs: list[BuildOutput] = []
 			for target in plan.targets:
-				artifacts.append(self._build_target(plan, target))
-			self._print_artifacts(artifacts)
+				outputs.append(self._build_target(plan, target))
+			print(f"action {action}: completed in {self._format_duration(time.perf_counter() - started_at)}")
+			if show_details:
+				self._print_outputs(outputs)
 		except ConfigError as exc:
+			print(f"action {action}: failed after {self._format_duration(time.perf_counter() - started_at)}")
 			raise BuildError(f"action {action}: {exc}") from exc
 
 	def _check_plan(self, plan: BuildPlan) -> None:
@@ -254,32 +260,41 @@ class PackageBuilder:
 			self._resolve_source_path(source_root, entry.source, label)
 			self._resolve_output_path(target_root, entry.target, label)
 
-	def _build_target(self, plan: BuildPlan, target: Target) -> Artifact:
-		target_dir = self._resolve_output_path(plan.output, target.output, f"target {target.name}: output {target.output}")
-		bundle_path = None
-		if target_dir.exists():
-			shutil.rmtree(target_dir)
-		target_dir.mkdir(parents=True)
-		if target.use_common:
-			self._copy_entries(plan.source, target_dir, target, "common", plan.common)
-		self._copy_entries(plan.source, target_dir, target, "files", target.files)
-		self._copy_manifest(plan.source, target_dir, target)
-		if target.bundle is not None:
-			bundle_path = self._resolve_output_path(plan.output, target.bundle, f"target {target.name}: bundle {target.bundle}")
-			self._write_bundle(target_dir, bundle_path)
-		print(f"built {target.name}: {target_dir}")
-		return Artifact(target=target.name, output=target_dir, bundle=bundle_path)
+	def _build_target(self, plan: BuildPlan, target: Target) -> BuildOutput:
+		started_at = time.perf_counter()
+		print(f"  target {target.name}: started")
+		try:
+			target_dir = self._resolve_output_path(plan.output, target.output, f"target {target.name}: output {target.output}")
+			bundle_path = None
+			if target_dir.exists():
+				shutil.rmtree(target_dir)
+			target_dir.mkdir(parents=True)
+			if target.use_common:
+				self._copy_entries(plan.source, target_dir, target, "common", plan.common)
+			self._copy_entries(plan.source, target_dir, target, "files", target.files)
+			self._copy_manifest(plan.source, target_dir, target)
+			if target.bundle is not None:
+				bundle_path = self._resolve_output_path(plan.output, target.bundle, f"target {target.name}: bundle {target.bundle}")
+				self._write_bundle(target_dir, bundle_path)
+			print(f"  target {target.name}: completed in {self._format_duration(time.perf_counter() - started_at)}")
+			return BuildOutput(target=target.name, output=target_dir, bundle=bundle_path)
+		except ConfigError:
+			print(f"  target {target.name}: failed after {self._format_duration(time.perf_counter() - started_at)}")
+			raise
+		except OSError as exc:
+			print(f"  target {target.name}: failed after {self._format_duration(time.perf_counter() - started_at)}")
+			raise ConfigError(f"target {target.name}: {exc}") from exc
 
-	def _print_artifacts(self, artifacts: list[Artifact]) -> None:
-		if not artifacts:
+	def _print_outputs(self, outputs: list[BuildOutput]) -> None:
+		if not outputs:
 			return
 		print()
-		print("Artifacts:")
-		for artifact in artifacts:
-			print(f"  {artifact.target}:")
-			print(f"    output: {artifact.output}")
-			if artifact.bundle is not None:
-				print(f"    bundle: {artifact.bundle}")
+		print("Outputs:")
+		for output in outputs:
+			print(f"  {output.target}:")
+			print(f"    dir: {output.output}")
+			if output.bundle is not None:
+				print(f"    bundle: {output.bundle}")
 
 	def _copy_entries(self, source_root: Path, target_root: Path, target: Target, group: str, entries: tuple[FileEntry, ...]) -> None:
 		for entry in entries:
@@ -324,6 +339,12 @@ class PackageBuilder:
 		return self._resolve_under(root, rel, label)
 
 	@staticmethod
+	def _format_duration(seconds: float) -> str:
+		if seconds < 1:
+			return f"{round(seconds * 1000)} ms"
+		return f"{seconds:.2f} s"
+
+	@staticmethod
 	def _resolve_under(root: Path, rel: Path, label: str) -> Path:
 		resolved = (root / rel).resolve()
 		root_resolved = root.resolve()
@@ -348,11 +369,14 @@ def load_schema(root: Path, config_path: Path) -> PackageSchema:
 	return schema_class(root, config)
 
 def print_usage(schema: PackageSchema) -> None:
-	print("Usage: py build.py <action>")
+	print("Usage: py build.py <action> [--show|-s]")
 	print()
 	print("Available actions:")
 	for name, targets in schema.describe_actions():
 		print(f"  {name} -> {', '.join(targets)}")
+	print()
+	print("Options:")
+	print("  --show, -s  Show generated output paths")
 
 def main(argv: list[str]) -> int:
 	root = Path(__file__).resolve().parent
@@ -361,14 +385,20 @@ def main(argv: list[str]) -> int:
 		if len(argv) == 1:
 			print_usage(schema)
 			return 0
-		if len(argv) != 2:
+		args = argv[1:]
+		show_details = False
+		for option in ("--show", "-s"):
+			if option in args:
+				show_details = True
+				args.remove(option)
+		if len(args) != 1:
 			print_usage(schema)
 			return 2
-		action = argv[1]
+		action = args[0]
 		if action not in schema.list_actions():
 			print_usage(schema)
 			return 2
-		PackageBuilder(root, schema).build(action)
+		PackageBuilder(root, schema).build(action, show_details=show_details)
 		return 0
 	except ConfigError as exc:
 		print(f"error: {exc}", file=sys.stderr)

@@ -100,6 +100,25 @@ If an action references a target that does not exist in `targets`, the config is
 
 Action names must be unique.
 
+## Command output
+
+The script prints when the selected action starts, when each target starts and completes, and how long the action took.
+
+```text
+action firefox: started
+  target firefox: started
+  target firefox: completed in 42 ms
+action firefox: completed in 43 ms
+```
+
+Generated paths are shown only when the `--show` or `-s` option is passed:
+
+```text
+py build.py firefox --show
+```
+
+The detailed block is named `Outputs` and contains target directories and bundle files.
+
 ## `common`
 
 Optional.
