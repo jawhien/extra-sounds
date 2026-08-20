@@ -237,7 +237,7 @@ class PackageBuilder:
 			outputs: list[BuildOutput] = []
 			for target in plan.targets:
 				outputs.append(self._build_target(plan, target))
-			print(f"action {action}: completed in {self._format_duration(time.perf_counter() - started_at)}")
+			print(f"action {action}: done in {self._format_duration(time.perf_counter() - started_at)}")
 			if show_details:
 				self._print_outputs(outputs)
 		except ConfigError as exc:
@@ -276,7 +276,7 @@ class PackageBuilder:
 			if target.bundle is not None:
 				bundle_path = self._resolve_output_path(plan.output, target.bundle, f"target {target.name}: bundle {target.bundle}")
 				self._write_bundle(target_dir, bundle_path)
-			print(f"  target {target.name}: completed in {self._format_duration(time.perf_counter() - started_at)}")
+			print(f"  target {target.name}: done in {self._format_duration(time.perf_counter() - started_at)}")
 			return BuildOutput(target=target.name, output=target_dir, bundle=bundle_path)
 		except ConfigError:
 			print(f"  target {target.name}: failed after {self._format_duration(time.perf_counter() - started_at)}")

@@ -107,8 +107,8 @@ The script prints when the selected action starts, when each target starts and c
 ```text
 action firefox: started
   target firefox: started
-  target firefox: completed in 42 ms
-action firefox: completed in 43 ms
+  target firefox: done in 42 ms
+action firefox: done in 43 ms
 ```
 
 Generated paths are shown only when the `--show` or `-s` option is passed:
